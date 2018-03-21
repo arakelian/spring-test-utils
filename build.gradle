@@ -30,7 +30,7 @@ apply plugin: "com.arakelian.multitool"
 
 group   = 'com.arakelian'
 
-task wrapper(type: Wrapper) { gradleVersion = '4.4.1' }
+task wrapper(type: Wrapper) { gradleVersion = '4.5.1' }
 
 multitool {
     relocates += [
