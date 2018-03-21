@@ -27,7 +27,7 @@ Add the following to your `pom.xml`:
 <dependency>
     <groupId>com.arakelian</groupId>
     <artifactId>spring-test-utils</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.2</version>
     <scope>compile</scope>
 </dependency>
 ```
@@ -42,7 +42,7 @@ repositories {
 }
 
 dependencies {
-  compile 'com.arakelian:spring-test-utils:1.0.0'
+  compile 'com.arakelian:spring-test-utils:1.0.2'
 }
 ```
 
