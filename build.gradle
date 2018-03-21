@@ -3,6 +3,7 @@
 plugins {
     id 'java'
     id 'maven'
+    id 'signing'
     id 'eclipse'
     id 'idea'
 
@@ -24,9 +25,6 @@ plugins {
     // useful utilities
     id "com.arakelian.multitool" version "1.4.2"
 }
-
-apply plugin: "com.arakelian.multitool"
-
 
 group   = 'com.arakelian'
 
