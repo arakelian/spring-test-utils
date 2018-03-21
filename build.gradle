@@ -1,20 +1,11 @@
 // spring-test-utils
 
-buildscript {
-	repositories {
-  	  mavenLocal()
-	}
-	dependencies {
-	  classpath "com.arakelian:gradle-multitool:1.4.2-SNAPSHOT"
-	}
-  }
-  
 plugins {
-	id 'java'
-	id 'maven'
-	id 'eclipse'
-	id 'idea'
-	
+    id 'java'
+    id 'maven'
+    id 'eclipse'
+    id 'idea'
+
     // keep dependencies up-to-date!
     id 'com.github.ben-manes.versions' version '0.17.0'
 
@@ -31,7 +22,7 @@ plugins {
     id "com.github.johnrengelman.shadow" version "2.0.2"
 
     // useful utilities
-   // id "com.arakelian.multitool" version "1.4.1"
+    id "com.arakelian.multitool" version "1.4.2"
 }
 
 apply plugin: "com.arakelian.multitool"
@@ -43,13 +34,13 @@ task wrapper(type: Wrapper) { gradleVersion = '4.4.1' }
 
 multitool {
     relocates += [
-        'com.google.common'      : 'repackaged.com.arakelian.spring.${prefix}com.google.common',
-        'com.google.thirdparty'  : 'repackaged.com.arakelian.spring.${prefix}com.google.thirdparty',
-        'javax.annotation'       : 'repackaged.com.arakelian.spring.${prefix}javax.annotation',
-        'org.apache.commons'     : 'repackaged.com.arakelian.spring.${prefix}org.apache.commons',
-        'org.objectweb.asm'      : 'repackaged.com.arakelian.spring.${prefix}org.objectweb.asm',
+        'com.google.common'      : 'repackaged.com.arakelian.spring.test.${prefix}com.google.common',
+        'com.google.thirdparty'  : 'repackaged.com.arakelian.spring.test.${prefix}com.google.thirdparty',
+        'javax.annotation'       : 'repackaged.com.arakelian.spring.test.${prefix}javax.annotation',
+        'org.apache.commons'     : 'repackaged.com.arakelian.spring.test.${prefix}org.apache.commons',
+        'org.objectweb.asm'      : 'repackaged.com.arakelian.spring.test.${prefix}org.objectweb.asm',
     ]
-    
+
     proguardConfiguration {
         keep includedescriptorclasses:true, 'class com.arakelian.** { *; }'
 
@@ -58,11 +49,12 @@ multitool {
 }
 
 dependencies {
-    processor 'org.immutables:value:2.5.6'
-    
-    shadow      'com.google.guava:guava:24.0-jre'
+    processor   'org.immutables:value:2.5.6'
 
-	// logging
+    shadow      'com.google.guava:guava:24.0-jre'
+    shadow      'org.apache.commons:commons-lang3:3.7'
+    
+    // logging
     testCompile 'org.apache.logging.log4j:log4j-api:2.9.1'
     testCompile 'org.apache.logging.log4j:log4j-core:2.9.1'
     testCompile 'org.apache.logging.log4j:log4j-slf4j-impl:2.9.1'
@@ -70,15 +62,11 @@ dependencies {
     testCompile 'org.slf4j:jul-to-slf4j:1.7.25'
     compile     'org.slf4j:slf4j-api:1.7.25'
 
-    // we export some classes that use these packages; this is not our own dependency
-    provided 'io.rest-assured:rest-assured:3.0.2'
-    provided 'javax.servlet:javax.servlet-api:3.1.0'
-    provided 'junit:junit:4.12'
-
-    compile  'org.springframework.boot:spring-boot:1.5.10.RELEASE'
-    compile  'org.springframework:spring-beans:4.3.7.RELEASE'
-    compile  'org.springframework:spring-test:4.3.7.RELEASE'
-    
-	// unit testing
-    testCompile 'junit:junit:4.12'
+    // dependencies
+    compile     'io.rest-assured:rest-assured:3.0.2'
+    compile     'javax.servlet:javax.servlet-api:3.1.0'
+    compile     'junit:junit:4.12'
+    compile     'org.springframework.boot:spring-boot:1.5.10.RELEASE'
+    compile     'org.springframework:spring-beans:4.3.7.RELEASE'
+    compile     'org.springframework:spring-test:4.3.7.RELEASE'
 }
