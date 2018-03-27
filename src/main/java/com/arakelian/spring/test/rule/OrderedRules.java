@@ -95,7 +95,8 @@ public class OrderedRules implements TestRule {
         });
 
         for (final OrderedRule each : sortedRules) {
-            LOGGER.info("Executing rule: {}", each);
+            final Class<?> testClass = description.getTestClass();
+            LOGGER.debug("Applying {} to test class [{}]", each, testClass.getName());
             base = each.apply(base, description);
         }
         return base;
